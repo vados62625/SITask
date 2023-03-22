@@ -1,0 +1,15 @@
+C:\Users\it-7\Desktop\SITask\bin\Debug\net7.0\SITask.exe
+C:\Users\it-7\Desktop\SITask\bin\Debug\net7.0\SITask.deps.json
+C:\Users\it-7\Desktop\SITask\bin\Debug\net7.0\SITask.runtimeconfig.json
+C:\Users\it-7\Desktop\SITask\bin\Debug\net7.0\SITask.dll
+C:\Users\it-7\Desktop\SITask\bin\Debug\net7.0\SITask.pdb
+C:\Users\it-7\Desktop\SITask\obj\Debug\net7.0\SITask.csproj.AssemblyReference.cache
+C:\Users\it-7\Desktop\SITask\obj\Debug\net7.0\SITask.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\it-7\Desktop\SITask\obj\Debug\net7.0\SITask.AssemblyInfoInputs.cache
+C:\Users\it-7\Desktop\SITask\obj\Debug\net7.0\SITask.AssemblyInfo.cs
+C:\Users\it-7\Desktop\SITask\obj\Debug\net7.0\SITask.csproj.CoreCompileInputs.cache
+C:\Users\it-7\Desktop\SITask\obj\Debug\net7.0\SITask.dll
+C:\Users\it-7\Desktop\SITask\obj\Debug\net7.0\refint\SITask.dll
+C:\Users\it-7\Desktop\SITask\obj\Debug\net7.0\SITask.pdb
+C:\Users\it-7\Desktop\SITask\obj\Debug\net7.0\SITask.genruntimeconfig.cache
+C:\Users\it-7\Desktop\SITask\obj\Debug\net7.0\ref\SITask.dll
