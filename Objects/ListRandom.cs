@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
+﻿using System.Text;
 
 namespace SITask.ListNode
 {
@@ -14,9 +9,7 @@ namespace SITask.ListNode
         public int Count;
         public void Add(string data)
         {
-            //data = data.Replace("\n", "\\n")
-            //    .Replace("\t", "\\t");
-            ListNode node = new ListNode() { Data = data };
+            var node = new ListNode() { Data = data };
             if (Head == null)
             {
                 Head = Tail = node;
@@ -33,13 +26,13 @@ namespace SITask.ListNode
         }
         private List<ListNode> ToList()
         {
-            List<ListNode> list = new List<ListNode>();
+            var list = new List<ListNode>();
             Loop(list.Add);
             return list;
         }
         private void Loop (Action<ListNode> method)
         {
-            ListNode node = Head;
+            var node = Head;
             while (node != null)
             {
                 method(node);
@@ -48,8 +41,8 @@ namespace SITask.ListNode
         }
         private void SetRandom(ListNode node)
         {
-            Random random = new Random();
-            int index = random.Next(0, Count);
+            var random = new Random();
+            var index = random.Next(0, Count);
             node.Random = ToList()[index];
         }
         public void SetRandoms()
@@ -58,28 +51,29 @@ namespace SITask.ListNode
         }
         public override string ToString()
         {
-            string listToString = string.Empty;
+            var listToString = string.Empty;
 
             var list = ToList();
 
-            foreach (ListNode node in list)
+            foreach (var node in list)
             {
-                string nodeData = node.Data;
-                listToString += $"{nodeData}\t{list.IndexOf(node.Random)}\n";
+                var nodeData = node.Data;
+                var nodeRandomIndex = node.Random != null ? list.IndexOf(node.Random) : -1;
+                listToString += $"{nodeData}\t{nodeRandomIndex}\n";
             }
 
             return listToString.Trim('\n');
         }
         public string Print()
         {
-            string listToPrint = string.Empty;
+            var listToPrint = string.Empty;
 
             var list = ToList();
 
-            foreach (ListNode node in list)
+            foreach (var node in list)
             {
-                string nodeData = node.Data;
-                string nodeRandomData = node.Random != null ? node.Random.Data : "no data";
+                var nodeData = node.Data;
+                var nodeRandomData = node.Random != null ? node.Random.Data : "no data";
                 listToPrint += $"Node data: {nodeData}\tRandomNode data: {nodeRandomData}\n";
             }
 
@@ -93,7 +87,11 @@ namespace SITask.ListNode
                 throw new Exception("Cannot write to file");
             }
 
-            byte[] buffer = Encoding.Default.GetBytes(ToString());
+            //clear file
+            s.SetLength(0);
+
+            //writing
+            var buffer = Encoding.Default.GetBytes(ToString());
             s.Write(buffer, 0, buffer.Length);
         }
 
@@ -105,29 +103,32 @@ namespace SITask.ListNode
             }
 
             //reading
-            byte[] buffer = new byte[s.Length];
+            var buffer = new byte[s.Length];
             s.Read(buffer, 0, buffer.Length);
-            string data = Encoding.Default.GetString(buffer);
+            var data = Encoding.Default.GetString(buffer);
 
             //drop list
             Head = Tail = null;
             Count = 0;
 
             //restore list
-            string[] nodes = data.Split('\n');
-            List<string> randIndexes = new List<string>();
+            var nodes = data.Split('\n');
+            var randIndexes = new List<string>();
 
-            foreach (string node in nodes)
+            foreach (var node in nodes)
             {
                 Add(node.Split("\t")[0]);
                 randIndexes.Add(node.Split("\t")[1]);
             }
 
-            List<ListNode> list = ToList();
+            var list = ToList();
             for (int i = 0; i < list.Count; i++)
             {
-                int randIndex = Convert.ToInt32(randIndexes[i]);
-                list[i].Random = list[randIndex];
+                var randIndex = Convert.ToInt32(randIndexes[i]);
+                if (randIndex > -1)
+                {
+                    list[i].Random = list[randIndex];
+                }
             }
         }
     }

@@ -1,24 +1,41 @@
 ﻿using SITask.ListNode;
-using static System.Net.Mime.MediaTypeNames;
-using System.IO;
-using System.Text;
 
-ListRandom list= new ListRandom();
+
+var list= new ListRandom();
 for (int i=1; i<=10; i++)
 {
     list.Add(i.ToString());
     //list.Add(Console.ReadLine() ?? string.Empty);
 }
+
 list.SetRandoms();
+
 Console.WriteLine(list.Print());
-using (FileStream fstream = new FileStream("serialize.txt", FileMode.OpenOrCreate))
+
+using (FileStream fstream = new FileStream("listRandom.txt", FileMode.OpenOrCreate))
 {
-    list.Serialize(fstream);
-    Console.WriteLine("Текст записан в файл");
+    try
+    {
+        list.Serialize(fstream);
+        Console.WriteLine("ListRandom object was successfully saved to file.\n");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error: {ex.Message}");
+    }
 }
-ListRandom newList = new ListRandom();
-using (FileStream fstream = File.OpenRead("serialize.txt"))
+
+var newList = new ListRandom();
+
+using (FileStream fstream = File.OpenRead("listRandom.txt"))
 {
-    newList.Deserialize(fstream);
-    Console.WriteLine($"Структура списка восстановлена\n{newList.Print()}");
+    try
+    {
+        newList.Deserialize(fstream);
+        Console.WriteLine($"ListRandom object was successfully restored from file.\n\n{newList.Print()}");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error: {ex.Message}");
+    }
 }
